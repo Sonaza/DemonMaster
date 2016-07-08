@@ -8,7 +8,7 @@ With this addon a warlock can open up a simple dialog where they can type the na
 
 The addon automatically detects if you have Grimoire of Supremacy talent selected and will even match the demon names: "Succubus" and "Shivarra" will both find the correct demon regardless of your current talent selection. Additionally only demons that you can summon are displayed.
 
-The addon /should/ work with all/most locales though it has only been tested with the English one.
+The addon *should* work with all/most locales though it has only been tested with the English one.
 
 ### Usage
 
