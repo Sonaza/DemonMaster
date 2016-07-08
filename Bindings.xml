@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="TOGGLE_DEMONMASTER" header="DEMONMASTER" category="ADDONS">
+		DemonMaster:ToggleFrame();
+	</Binding>
+</Bindings>
