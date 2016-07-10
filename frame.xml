@@ -59,6 +59,7 @@
 								<Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
 								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
 							</Anchors>
+							<TexCoords left="0.065" right="0.935" top="0.065" bottom="0.935"/>
 						</Texture>
 						<Texture name="$parentGloss" file="Interface\AddOns\DemonMaster\Media\Gloss" alphaMode="ADD">
 							<Size x="68" y="68"/>

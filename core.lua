@@ -61,6 +61,10 @@ function Addon:OnEnable()
 		if(not Addon:IsBindingSet() and not DemonMasterKeybindAlert) then
 			StaticPopup_Show("DEMONMASTER_NO_KEYBIND");
 		end
+	
+		if(not DemonMasterLastDemon) then
+			DemonMasterLastDemon = "";
+		end
 	end
 end
 
@@ -76,7 +80,8 @@ function Addon:PLAYER_REGEN_DISABLED()
 end
 
 function Addon:ResetFrame()
-	DemonMasterFrameSearch:SetText("");
+	DemonMasterFrameSearch:SetText(DemonMasterLastDemon or "");
+	DemonMaster_OnTextChanged(DemonMasterFrameSearch);
 end
 
 function Addon:ToggleFrame()
@@ -92,14 +97,7 @@ end
 
 function Addon:OpenFrame()
 	if(PLAYER_CLASS ~= "WARLOCK") then return end
-	
 	if(DemonMasterFrame:IsShown()) then return end
-	
-	-- if(not Addon.CurrentBinding) then
-		-- Addon.CurrentBinding = GetBindingAction("ENTER");
-		-- SetBinding("ENTER", "CLICK DemonMasterFrameSpellButton:LeftButton");
-		-- SetOverrideBindingClick(DemonMasterFrameSearch, true, "ENTER", "DemonMasterFrameSpellButton", "LeftButton");
-	-- end
 	
 	Addon:ResetFrame();
 	DemonMasterFrame:Show();
@@ -124,9 +122,17 @@ function DemonMaster_OnEditFocusLost()
 end
 
 function DemonMaster_OnEnterPressed(self)
+	local searchText = strtrim(strlower(self:GetText()));
+	if(strlen(searchText) == 0) then
+		Addon:CloseFrame();
+		return;
+	end
+	
 	if(not Addon.CurrentBinding) then
 		Addon.CurrentBinding = GetBindingAction("ENTER");
 		SetBinding("ENTER", "CLICK DemonMasterFrameSpellButton:LeftButton");
+		
+		DemonMasterLastDemon = strtrim(self:GetText());
 	end
 	
 	DemonMasterFrameSearch:Hide();
@@ -148,7 +154,6 @@ function DemonMaster_OnTextChanged(self)
 				local realSpellID = Addon:GetRealSpellID(spellID);
 				local realSpellName, _, realIcon = GetSpellInfo(realSpellID);
 				
-				-- local searchSpellName = gsub(spellName, "Teleport: ", "");
 				local searchSpellName = realSpellName;
 				
 				local spellFound = true;

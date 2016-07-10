@@ -1,10 +1,10 @@
-## Interface: 60200
+## Interface: 70000
 ## Title: DemonMaster
 ## Notes: Helper for demon summoners
 ## Author: Sonaza
-## Version: 1.1.0
+## Version: 2.0.0
 ## OptionalDeps: Ace3
-## SavedVariablesPerCharacter: DemonMasterKeybindAlert
+## SavedVariablesPerCharacter: DemonMasterKeybindAlert, DemonMasterLastDemon
 
 #@no-lib-strip@
 libs\LibStub\LibStub.lua
