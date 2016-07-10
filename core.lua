@@ -65,6 +65,8 @@ function Addon:OnEnable()
 		if(not DemonMasterLastDemon) then
 			DemonMasterLastDemon = "";
 		end
+		
+		Addon.NoResult = true;
 	end
 end
 
@@ -80,7 +82,10 @@ function Addon:PLAYER_REGEN_DISABLED()
 end
 
 function Addon:ResetFrame()
-	DemonMasterFrameSearch:SetText(DemonMasterLastDemon or "");
+	local prefill = DemonMasterLastDemon or "";
+	DemonMasterFrameSearch:SetText(prefill);
+	DemonMasterFrameSearch:HighlightText(0, strlen(prefill));
+	
 	DemonMaster_OnTextChanged(DemonMasterFrameSearch);
 end
 
@@ -122,6 +127,8 @@ function DemonMaster_OnEditFocusLost()
 end
 
 function DemonMaster_OnEnterPressed(self)
+	if(Addon.NoResult) then return end
+	
 	local searchText = strtrim(strlower(self:GetText()));
 	if(strlen(searchText) == 0) then
 		Addon:CloseFrame();
@@ -172,8 +179,12 @@ function DemonMaster_OnTextChanged(self)
 					
 					DemonMasterFrameSpellButton:Show();
 					
+					Addon.NoResult = false;
+					
 					break;
 				else
+					Addon.NoResult = true;
+					
 					DemonMasterFrameSpellName:SetText("No Result");
 					DemonMasterFrameSpellButton:Hide();
 				end
