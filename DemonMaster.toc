@@ -1,8 +1,8 @@
-## Interface: 70200
+## Interface: 80000
 ## Title: DemonMaster
 ## Notes: Helper for demon summoners
 ## Author: Sonaza
-## Version: 2.0.1
+## Version: 3.0.0
 ## OptionalDeps: Ace3
 ## SavedVariablesPerCharacter: DemonMasterKeybindAlert, DemonMasterLastDemon
 
